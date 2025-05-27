@@ -1,4 +1,4 @@
-const Button = (props) => {
+const Button = (props: any) => {
 	console.log(props.selected);
 	return (
 		<div

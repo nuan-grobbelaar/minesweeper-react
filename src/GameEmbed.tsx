@@ -7,9 +7,13 @@ const GameEmbed = () => {
 
 	function toggleDefuseMode() {
 		setDefuseMode(!defuseMode);
-		document
-			.getElementById("game")
-			?.contentWindow?.callGodotToggleDefuseMode(true);
+		const iframe = document.getElementById("game") as HTMLIFrameElement | null;
+		const gameWindow = iframe?.contentWindow as
+			| (Window & {
+					callGodotToggleDefuseMode: (enabled: boolean) => void;
+			  })
+			| null;
+		gameWindow?.callGodotToggleDefuseMode(true);
 	}
 
 	return (
