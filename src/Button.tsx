@@ -5,12 +5,12 @@ const Button = (props: any) => {
 			id={props.id}
 			className={`brutalButton ${props.className} ${
 				props.selected ? "selected" : ""
-			}`}
+			} ${props.className}`}
 		>
 			<div className="brutalButton__container">
 				{!props.selected && <div className="brutalButton__shadow" />}
 				<button
-					className={props.className + " brutalButton__container__button"}
+					className={"brutalButton__container__button"}
 					style={
 						!props.disabled
 							? { backgroundColor: props.color }
