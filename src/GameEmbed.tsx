@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
+import ProgressBar from "./ProgressBar";
+import Box from "./Box";
 
 const GameEmbed = () => {
 	const iframeRef = useRef(null);
@@ -35,6 +37,7 @@ const GameEmbed = () => {
 
 	return (
 		<>
+			<ProgressBar max="100" value="100" />
 			<div className="game-container">
 				<iframe
 					id="game"
@@ -46,11 +49,14 @@ const GameEmbed = () => {
 					allowFullScreen
 				/>
 			</div>
+			<Box>
+				<span>Score:</span>
+			</Box>
 			<div className="action-bar">
 				<Button
 					className="action-button"
 					onClick={() => toggleDefuseMode()}
-					color="#ffffff"
+					color="#f5f5f5"
 					selected={defuseMode}
 				>
 					Defuse Mode
@@ -58,7 +64,7 @@ const GameEmbed = () => {
 				<Button
 					className="action-button"
 					onClick={() => defuseSelectedCluster()}
-					color="#ffffff"
+					color="#f5f5f5"
 					selected={!clusterSelected}
 				>
 					Confirm
