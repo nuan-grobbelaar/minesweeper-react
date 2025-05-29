@@ -73,15 +73,15 @@ const GameEmbed = () => {
 				<Button
 					className="action-button"
 					onClick={() => toggleDefuseMode()}
-					color="#f5f5f5"
-					selected={gameState?.defuse_mode}
+					color="#fff"
+					selected={gameState ? gameState.defuse_mode : true}
 				>
 					Defuse Mode
 				</Button>
 				<Button
 					className="action-button"
 					onClick={() => defuseSelectedCluster()}
-					color="#f5f5f5"
+					color="#fff"
 					selected={!gameState?.cluster_selected}
 				>
 					Confirm
