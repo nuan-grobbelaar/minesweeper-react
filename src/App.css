@@ -51,13 +51,10 @@ canvas {
   height: auto;
   width: 100%;
   padding-left: 2px;
-  /* margin-right: -16px; */
-  /* margin-left: -16px; */
 }
 
 .action-bar .action-button {
   margin-right: 16px;
-  /* margin-right: 25px; */
 }
 
 button {
@@ -79,10 +76,6 @@ button:focus {
   transform: translate(-1.5px, -1.5px);
 }
 
-/* .brutalButton:hover {
-  transform: translate(-2px, -2px);
-} */
-
 .brutalButton__shadow {
   position: absolute;
   top: 0;
@@ -95,14 +88,6 @@ button:focus {
   pointer-events: none;
 }
 
-/* .brutalButton:hover .brutalButton__shadow {
-  transform: translate(3px, 3px);
-} */
-
-/* .brutalButton.selected .brutalButton__shadow {
-  transform: translate(-0.5px, -0.5px);
-} */
-
 .brutalButton__container {
   position: relative;
   z-index: 1;
@@ -113,7 +98,6 @@ button:focus {
   padding: 10px !important;
   padding-bottom: 8px !important;
   border: 2px solid #000 !important;
-  border-radius: 2px !important;
   z-index: 1;
 }
 
