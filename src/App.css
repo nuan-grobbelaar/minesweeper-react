@@ -10,11 +10,28 @@ body {
   align-items: center;
 }
 
+.grid {
+  display: grid;
+  grid-template-areas:
+    "blank health-bar top-blank"
+    "blank game-window right-info"
+    "blank action-bar bottom-blank";
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr 4fr 1fr;
+  column-gap: 16px;
+  row-gap: 16px;
+}
+
 iframe {
   border: none;
 }
 
-.game-container {
+.right-info {
+  grid-area: right-info;
+}
+
+.game-window {
+  grid-area: game-window;
   min-width: 450px;
   min-height: 500px;
   width: 50vw;
@@ -28,11 +45,11 @@ canvas {
 }
 
 .action-bar {
+  grid-area: action-bar;
   display: flex;
   flex-direction: row;
   height: auto;
   width: 100%;
-  margin-top: 16px;
   padding-left: 2px;
   /* margin-right: -16px; */
   /* margin-left: -16px; */
@@ -112,13 +129,13 @@ button:focus {
   transform: translateY(3px);
 } */
 
-.progress-bar {
+.health-bar {
+  grid-area: health-bar;
   width: 100%;
   height: 32px;
-  margin-bottom: 16px;
 }
 
-.progress-bar__shadow {
+.health-bar__shadow {
   position: absolute;
   top: 0;
   left: 0;
@@ -130,7 +147,7 @@ button:focus {
   pointer-events: none;
 }
 
-.progress-bar progress {
+.health-bar progress {
   height: 100%;
   width: 100%;
   -webkit-appearance: none;
@@ -141,27 +158,28 @@ button:focus {
   z-index: 1;
 }
 
-.progress-bar progress::-webkit-progress-bar {
+.health-bar progress::-webkit-progress-bar {
   background: #ff5050;
 }
 
-.progress-bar progress::-moz-progress-bar {
+.health-bar progress::-moz-progress-bar {
   background: #ff5050;
 }
 
-.progress-bar progress::-webkit-progress-value {
-  background: #f5f5f5;
+.health-bar progress::-webkit-progress-value {
+  background: #fff;
   border-right: 2px solid #000;
 }
 
-.progress-bar.max progress::-webkit-progress-value {
+.health-bar.max progress::-webkit-progress-value {
   border: none;
 }
 
 .box {
   border: 2px solid #000;
-  width: auto;
-  height: 100%;
+  padding: 8px;
+  /* width: fit-content;
+  height: fit-content; */
 }
 
 .box span {
@@ -169,19 +187,64 @@ button:focus {
   font-family: 'Bebas Neue', sans-serif !important;
 }
 
+/* .box.indicator {
+  width: fit-content;
+  padding: 0;
+  padding-right: 8.5px;
+  padding-left: 8.5px;
+  margin-top: 8px;
+}
+
+.box.indicator span {
+  color: #000;
+} */
+
+.box.score {
+  width: auto;
+  height: auto;
+}
+
+.box.score div {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+}
+
+.box.score div span:last-child {
+  margin-left: auto;
+}
+
 @media (max-width: 600px) {
-  .game-container {
+  .game-window {
     min-width: 320px;
     min-height: 320px;
     width: calc(100vw - 10px);
     height: calc(calc(100vw - 10px) + 50px);
-    padding-left: 5px;
-    padding-right: 5px;
+    /* padding-left: 5px;
+    padding-right: 5px; */
   }
 
-  .progress-bar {
+  .health-bar {
     width: calc(100vw - 10px);
+    /* padding-left: 5px;
+    padding-right: 5px; */
+  }
+
+  .grid {
     padding-left: 5px;
     padding-right: 5px;
+    grid-template-areas:
+      "right-info"
+      "health-bar"
+      "game-window"
+      "action-bar";
+    grid-template-rows: auto auto auto auto;
+    grid-template-columns: calc(100vw - 10px);
   }
+
+  .box.score {
+    width: 25vw;
+  }
+
 }

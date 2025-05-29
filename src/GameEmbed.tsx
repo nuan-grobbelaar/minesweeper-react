@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
-import ProgressBar from "./ProgressBar";
 import Box from "./Box";
+import HealthBar from "./HealthBar";
 
 const GameEmbed = () => {
 	const iframeRef = useRef(null);
@@ -14,16 +14,26 @@ const GameEmbed = () => {
 			| Window & {
 					callGodotSetDefuseMode: (enabled: boolean) => void;
 					callGodotDefuseSelectedCluster: () => void;
-					setClusterSelected: (selected: boolean) => void;
-					setClusterDefuseMode: (mode_set: boolean) => void;
+					updateGameState: (data: any) => void;
+					// setClusterDefuseMode: (mode_set: boolean) => void;
 			  };
 	}
 
 	useEffect(() => {
 		const gameWindow = getGameWindow();
-		gameWindow.setClusterSelected = setClusterSelected;
-		gameWindow.setClusterDefuseMode = setDefuseMode;
+		gameWindow.updateGameState = updateGameState;
+		// gameWindow.setClusterDefuseMode = setDefuseMode;
 	}, []);
+
+	function updateGameState(data: any) {
+		try {
+			const parsed = JSON.parse(data);
+			setDefuseMode(parsed.defuse_mode);
+			setClusterSelected(parsed.cluster_selected);
+		} catch (e) {
+			console.error("Failed to parse data from Godot", e);
+		}
+	}
 
 	function toggleDefuseMode() {
 		const gameWindow = getGameWindow();
@@ -36,9 +46,9 @@ const GameEmbed = () => {
 	}
 
 	return (
-		<>
-			<ProgressBar max="100" value="100" />
-			<div className="game-container">
+		<div className="grid">
+			<HealthBar max="100" value="83" />
+			<div className="game-window">
 				<iframe
 					id="game"
 					ref={iframeRef}
@@ -49,9 +59,6 @@ const GameEmbed = () => {
 					allowFullScreen
 				/>
 			</div>
-			<Box>
-				<span>Score:</span>
-			</Box>
 			<div className="action-bar">
 				<Button
 					className="action-button"
@@ -70,7 +77,19 @@ const GameEmbed = () => {
 					Confirm
 				</Button>
 			</div>
-		</>
+			<div className="right-info">
+				<Box className="score">
+					<div>
+						<span>Score:</span>
+						<span>328</span>
+					</div>
+					<div>
+						<span>Flags:</span>
+						<span>40</span>
+					</div>
+				</Box>
+			</div>
+		</div>
 	);
 };
 
