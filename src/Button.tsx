@@ -7,7 +7,7 @@ const Button = (props: any) => {
 			} ${props.disabled ? "disabled" : ""} ${props.className}`}
 			style={
 				props.selected && props.selectedGlowColor
-					? { boxShadow: "0 0 20px #ff9090cc" }
+					? { boxShadow: "0 0 15px #ff9090cc" }
 					: {}
 			}
 		>
