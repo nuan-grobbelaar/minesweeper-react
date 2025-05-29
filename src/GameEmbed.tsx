@@ -15,6 +15,7 @@ interface GameState {
 const GameEmbed = () => {
 	const iframeRef = useRef(null);
 	const [gameState, setGameState] = useState<GameState>();
+	const [confirmPressed, setConfirmPressed] = useState(false);
 
 	// const iframe = document.getElementById("game") as HTMLIFrameElement | null;
 	function getGameWindow() {
@@ -48,6 +49,10 @@ const GameEmbed = () => {
 	}
 
 	function defuseSelectedCluster() {
+		setConfirmPressed(true);
+		setTimeout(() => {
+			setConfirmPressed(false);
+		}, 1000);
 		const gameWindow = getGameWindow();
 		gameWindow?.callGodotDefuseSelectedCluster();
 	}
@@ -74,7 +79,10 @@ const GameEmbed = () => {
 					className="action-button"
 					onClick={() => toggleDefuseMode()}
 					color="#fff"
-					selected={gameState ? gameState.defuse_mode : true}
+					selectedColor="#ff5050"
+					selectedGlowColor="#ff9090cc"
+					selected={gameState?.defuse_mode}
+					disabled={!gameState}
 				>
 					Defuse Mode
 				</Button>
@@ -82,7 +90,10 @@ const GameEmbed = () => {
 					className="action-button"
 					onClick={() => defuseSelectedCluster()}
 					color="#fff"
-					selected={!gameState?.cluster_selected}
+					selectedColor="#a0ffa0"
+					selectedGlowColor="#e0ffe0cc"
+					selected={confirmPressed}
+					disabled={!gameState?.cluster_selected}
 				>
 					Confirm
 				</Button>

@@ -69,11 +69,11 @@ button:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 48px;
 }
 
-.brutalButton.selected {
-  transform: translate(-1.5px, -1.5px);
+.brutalButton.selected,
+.brutalButton.disabled {
+  transform: translate(-2px, -2px);
 }
 
 .brutalButton__shadow {
@@ -82,8 +82,8 @@ button:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
-  transform: translate(-1.5px, -1.5px);
+  background-color: #00000099;
+  transform: translate(-2px, -2px);
   z-index: -1;
   pointer-events: none;
 }
