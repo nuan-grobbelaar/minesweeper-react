@@ -3,10 +3,18 @@ import Button from "./Button";
 import Box from "./Box";
 import HealthBar from "./HealthBar";
 
+interface GameState {
+	defuse_mode: boolean;
+	cluster_selected: boolean;
+	health: number;
+	max_health: number;
+	score: number;
+	remaing_flags: number;
+}
+
 const GameEmbed = () => {
 	const iframeRef = useRef(null);
-	const [defuseMode, setDefuseMode] = useState(false);
-	const [clusterSelected, setClusterSelected] = useState(false);
+	const [gameState, setGameState] = useState<GameState>();
 
 	// const iframe = document.getElementById("game") as HTMLIFrameElement | null;
 	function getGameWindow() {
@@ -27,9 +35,8 @@ const GameEmbed = () => {
 
 	function updateGameState(data: any) {
 		try {
-			const parsed = JSON.parse(data);
-			setDefuseMode(parsed.defuse_mode);
-			setClusterSelected(parsed.cluster_selected);
+			const state: GameState = JSON.parse(data);
+			setGameState(state);
 		} catch (e) {
 			console.error("Failed to parse data from Godot", e);
 		}
@@ -37,7 +44,7 @@ const GameEmbed = () => {
 
 	function toggleDefuseMode() {
 		const gameWindow = getGameWindow();
-		gameWindow?.callGodotSetDefuseMode(!defuseMode);
+		gameWindow?.callGodotSetDefuseMode(!gameState?.defuse_mode);
 	}
 
 	function defuseSelectedCluster() {
@@ -47,7 +54,10 @@ const GameEmbed = () => {
 
 	return (
 		<div className="grid">
-			<HealthBar max="100" value="83" />
+			<HealthBar
+				max={gameState ? gameState.max_health : 10}
+				value={gameState ? gameState.health : 10}
+			/>
 			<div className="game-window">
 				<iframe
 					id="game"
@@ -64,7 +74,7 @@ const GameEmbed = () => {
 					className="action-button"
 					onClick={() => toggleDefuseMode()}
 					color="#f5f5f5"
-					selected={defuseMode}
+					selected={gameState?.defuse_mode}
 				>
 					Defuse Mode
 				</Button>
@@ -72,7 +82,7 @@ const GameEmbed = () => {
 					className="action-button"
 					onClick={() => defuseSelectedCluster()}
 					color="#f5f5f5"
-					selected={!clusterSelected}
+					selected={!gameState?.cluster_selected}
 				>
 					Confirm
 				</Button>
@@ -81,11 +91,11 @@ const GameEmbed = () => {
 				<Box className="score">
 					<div>
 						<span>Score:</span>
-						<span>328</span>
+						<span>{gameState ? gameState.score : 0}</span>
 					</div>
 					<div>
 						<span>Flags:</span>
-						<span>40</span>
+						<span>{gameState ? gameState.remaing_flags : 0}</span>
 					</div>
 				</Box>
 			</div>

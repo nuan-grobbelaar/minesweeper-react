@@ -160,10 +160,14 @@ button:focus {
 
 .health-bar progress::-webkit-progress-bar {
   background: #ff5050;
+  box-shadow:
+    inset -2px -2px 0px #00000048
 }
 
 .health-bar progress::-moz-progress-bar {
   background: #ff5050;
+  box-shadow:
+    inset -2px -2px 0px #00000048
 }
 
 .health-bar progress::-webkit-progress-value {
@@ -171,7 +175,7 @@ button:focus {
   border-right: 2px solid #000;
 }
 
-.health-bar.max progress::-webkit-progress-value {
+.health-bar.end progress::-webkit-progress-value {
   border: none;
 }
 
