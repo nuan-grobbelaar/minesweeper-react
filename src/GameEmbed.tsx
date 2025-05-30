@@ -59,6 +59,11 @@ const GameEmbed = () => {
 
 	return (
 		<div className="grid">
+			<div className="title">
+				<h1>EXPL</h1>
+				<img src="/bomb.svg" height="60px" width="60px"></img>
+				<h1>dyssey</h1>
+			</div>
 			<HealthBar
 				max={gameState ? gameState.max_health : 10}
 				value={gameState ? gameState.health : 10}
@@ -90,8 +95,8 @@ const GameEmbed = () => {
 					className="action-button"
 					onClick={() => defuseSelectedCluster()}
 					color="#fff"
-					selectedColor="#a0ffa0"
-					selectedGlowColor="#e0ffe0cc"
+					selectedColor="#ff5050"
+					selectedGlowColor="#ff9090cc"
 					selected={confirmPressed}
 					disabled={!gameState?.cluster_selected}
 				>

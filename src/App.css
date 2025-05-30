@@ -13,13 +13,28 @@ body {
 .grid {
   display: grid;
   grid-template-areas:
-    "blank health-bar top-blank"
+    "blank title       top-blank"
+    "blank health-bar  top-blank"
     "blank game-window right-info"
-    "blank action-bar bottom-blank";
-  grid-template-rows: auto auto auto;
+    "blank action-bar  bottom-blank";
+  grid-template-rows: auto auto auto auto;
   grid-template-columns: 1fr 4fr 1fr;
   column-gap: 16px;
   row-gap: 16px;
+}
+
+.title {
+  grid-area: title;
+  display: flex;
+  margin-top: 16px;
+  margin-bottom: -10px;
+}
+
+.title h1 {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 4em;
 }
 
 iframe {
@@ -35,7 +50,7 @@ iframe {
   min-width: 450px;
   min-height: 500px;
   width: 50vw;
-  height: calc(50vw + 50px);
+  height: 50vw;
 }
 
 canvas {
@@ -204,6 +219,10 @@ button:focus {
 }
 
 @media (max-width: 600px) {
+  .title {
+    display: none;
+  }
+
   .game-window {
     min-width: 320px;
     min-height: 320px;
