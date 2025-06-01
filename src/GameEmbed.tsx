@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import Box from "./Box";
 import HealthBar from "./HealthBar";
+import Title from "./Title";
 
 interface GameState {
 	defuse_mode: boolean;
@@ -59,11 +60,7 @@ const GameEmbed = () => {
 
 	return (
 		<div className="grid">
-			<div className="title">
-				<h1>EXPL</h1>
-				<img src="/bomb.svg" height="60px" width="60px"></img>
-				<h1>dyssey</h1>
-			</div>
+			<Title active={!!gameState} />
 			<HealthBar
 				max={gameState ? gameState.max_health : 10}
 				value={gameState ? gameState.health : 10}
