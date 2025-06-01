@@ -1,5 +1,3 @@
-import { useEffect, useRef } from "react";
-
 const Title = (props: any) => {
 	return (
 		<div className={`title ${props.active ? "active" : ""}`}>

@@ -247,14 +247,10 @@ button:focus {
     min-height: 320px;
     width: calc(100vw - 10px);
     height: calc(calc(100vw - 10px) + 50px);
-    /* padding-left: 5px;
-    padding-right: 5px; */
   }
 
   .health-bar {
     width: 100%;
-    /* padding-left: 5px;
-    padding-right: 5px; */
   }
 
   .grid {
