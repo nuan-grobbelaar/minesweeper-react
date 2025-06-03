@@ -239,8 +239,8 @@ button:focus {
   }
 
   .title.active h1 {
-    text-shadow: 0 0 0 rgba(0, 0, 0, 1), -0.2rem -0.2rem 0 rgba(0, 0, 0, 1);
-    transform: translate(0.2rem, 0.2rem);
+    text-shadow: 0 0 0 rgba(0, 0, 0, 1), -0.15rem -0.15rem 0 rgba(0, 0, 0, 1);
+    transform: translate(0.15rem, 0.15rem);
   }
 
   .game-window {
